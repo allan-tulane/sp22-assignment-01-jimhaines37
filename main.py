@@ -4,8 +4,13 @@ See assignment-01.pdf for details.
 """
 # no imports needed.
 
-def foo(x):
-    ### TODO
+def recrFib(x):
+    if x <= 1:
+      return x 
+    else:
+      aVar = recrFib(x-1) 
+      bVar = recrFib(x-2)
+      return aVar + bVar
     pass
 
 def longest_run(mylist, key):
