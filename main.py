@@ -8,10 +8,11 @@ def recrFib(x):
     if x <= 1:
       return x 
     else:
-      aVar = recrFib(x-1) 
-      bVar = recrFib(x-2)
-      return aVar + bVar
-    pass
+        for i in range(x):
+            aVar = recrFib(x-1) 
+            bVar = recrFib(x-2)
+            return aVar + bVar
+        pass
 
 def longest_run(mylist, key):
     ### TODO
