@@ -61,7 +61,13 @@ $$
   - 2a. (6 pts) Translate this to Python code -- fill in the `def foo` method in `main.py`  
 
   - 2b. (6 pts) What does this function do, in your own words?  
-
+        This function, when given a value, will first check if the value is 1 or less, if it is, that value will simply be returned.
+        If the value is greater than 1 it will assign a variable aVar as the function called on the previous value, and assign another
+        variable bVar as the function called on the value from 2 iterations previous. It will then return the sum of aVar and bVar.
+        The function could have included a for loop inside the "else: " statement but since it was not, the function could be called 
+        within a for loop to print each value of the sequence. I assigned 2 variables instead of just calling the funtion 
+        like: return(recrFib(n-1) + recrFib(n-2)) because it seemed more accurate to the SPARC function to assign variables. The function will
+        return the fibonacci sequence one term at a time up to the value given to recrFib(), assuming the function is called in a for loop.
 .  
 .  
 .  
