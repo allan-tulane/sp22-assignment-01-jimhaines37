@@ -14,7 +14,17 @@ def recrFib(x):
         pass
 
 def longest_run(mylist, key):
-    ### TODO
+    streak = 0
+    maxStreak = 0
+    
+    for i in mylist:
+        if i == key:
+            streak += 1
+            if streak > maxStreak:
+                maxStreak = streak
+        else: 
+            streak = 0
+    return maxStreak
     pass
 
 
