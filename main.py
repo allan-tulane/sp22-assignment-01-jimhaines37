@@ -47,7 +47,7 @@ def combine(firstResult, secondResult):
     #1, both results are entire range
     if firstResult.is_entire_range:
         if secondResult.is_entire_range: 
-            longestStreak = firstResult.left_size + secondResult.left_size
+            longestStreak = firstResult.longest_size + secondResult.longest_size
             result = Result(longestStreak, longestStreak, longestStreak, True)
             return result
         else: leftResult = firstResult.left_size + secondResult.left_size #1a, streak perfectly on left side (firstResult)
