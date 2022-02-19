@@ -44,25 +44,26 @@ class Result:
 def combine(firstResult, secondResult):
     #3 overall cases (Thanks Kiran): both results perfectly match key, one result is matches key perfectly but other does not, neither are perfect so longest run is from combination of both results
     
-    #1, both results are entire range
+    #1, both results are entire range, or only on left side, if neither: provide leftResult only
     if firstResult.is_entire_range:
         if secondResult.is_entire_range: 
             longestStreak = firstResult.longest_size + secondResult.longest_size
             result = Result(longestStreak, longestStreak, longestStreak, True)
             return result
-        else: leftResult = firstResult.left_size + secondResult.left_size #1a, streak perfectly on left side (firstResult)
-    else: leftResult = firstResult.left_size #1b, streak on left side (firstResult), but not perfect
+        else: leftResult = firstResult.left_size #1a, streak perfectly on left side (firstResult)
+    else: leftResult = firstResult.longest_size #1b, streak on left side (firstResult), but not perfect
     
-    #2, right side is a perfect streak, but left side is not
+     #2, right side is a perfect streak, if not provide rightResult only
     if secondResult.is_entire_range:
         rightResult = firstResult.right_size + secondResult.left_size
-    else: rightResult = secondResult.right_size #2a, right side is not perfect run and left side is not prefct run
+    else: rightResult = secondResult.longest_size #2a, right side is not perfect run and left side is not prefct run
     
-    #3, if longestStreak only occurs when the lists are combined
-    combinedLists = firstResult.right_size + secondResult.left_size
+    #3, longestStreak occurs when the lists are combined, if not: provide the greater streak of the 2 results
     longestStreakLeft = firstResult.longest_size
     longestStreakRight = secondResult.longest_size
     maximumStreak = max(longestStreakLeft, longestStreakRight)
+    combinedLists = firstResult.right_size + secondResult.left_size
+    
     
     if combinedLists > maximumStreak:
         result = Result(leftResult, rightResult, combinedLists, False)
@@ -92,5 +93,6 @@ def longest_run_recursive(mylist, key):
 ## Feel free to add your own tests here.
 def test_longest_run():
     assert longest_run([2,12,12,8,12,12,12,0,12,1], 12) == 3
+    #tested in google colab
 
 
