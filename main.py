@@ -39,10 +39,28 @@ class Result:
     def __repr__(self):
         return('longest_size=%d left_size=%d right_size=%d is_entire_range=%s' %
               (self.longest_size, self.left_size, self.right_size, self.is_entire_range))
+
+
+def combine(firstResult, secondResult):
+    #3 cases: both results perfectly match key, one result is matches key perfectly but other does not, longest run is from combination of both results
     
+    #1, both results are entire range
+    if firstResult.is_entire_range:
+        
     
 def longest_run_recursive(mylist, key):
-    ### TODO
+    
+    #2 bases cases: 1 element in the list that is the key, or 1 element that is not the key
+    if len(mylist) == 1 and mylist[0] = key: result = Result(1,1,1,True)
+    elif len(mylist) == 1 and mylist[0] != key: result = Result(0,0,0,False)
+        
+    #actual recursive calls
+    else:
+        mid = len(mylist)//2
+        firstResult = longest_run_recursive(mylist[0:mid], key)
+        secondResult = longest_run_recursive(mylist[mid:len(mylist)], key)
+        result = combine(firstResult, secondResult)
+    return result
     pass
 
 ## Feel free to add your own tests here.
