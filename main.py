@@ -42,16 +42,42 @@ class Result:
 
 
 def combine(firstResult, secondResult):
-    #3 cases: both results perfectly match key, one result is matches key perfectly but other does not, longest run is from combination of both results
+    #3 overall cases (Thanks Kiran): both results perfectly match key, one result is matches key perfectly but other does not, neither are perfect so longest run is from combination of both results
     
     #1, both results are entire range
     if firstResult.is_entire_range:
+        if secondResult.is_entire_range: 
+            longestStreak = firstResult.left_size + secondResult.left_size
+            result = Result(longestStreak, longestStreak, longestStreak, True)
+            return result
+        else: leftResult = firstResult.left_size + secondResult.left_size #1a, streak perfectly on left side (firstResult)
+    else: leftResult = firstResult.left_size #1b, streak on left side (firstResult), but not perfect
+    
+    #2, right side is a perfect streak, but left side is not
+    if secondResult.is_entire_range:
+        rightResult = firstResult.right_size + secondResult.left_size
+    else: rightResult = secondResult.right_size #2a, right side is not perfect run and left side is not prefct run
+    
+    #3, if longestStreak only occurs when the lists are combined
+    combinedLists = firstResult.right_size + secondResult.left_size
+    longestStreakLeft = firstResult.longest_size
+    longestStreakRight = secondResult.longest_size
+    maximumStreak = max(longestStreakLeft, longestStreakRight)
+    
+    if combinedLists > maximumStreak:
+        result = Result(leftResult, rightResult, combinedLists, False)
+        return result
+    else: result = Result(leftResult, rightResult, maximumStreak, False)
+        return result
+    
+    
+    
         
     
 def longest_run_recursive(mylist, key):
     
     #2 bases cases: 1 element in the list that is the key, or 1 element that is not the key
-    if len(mylist) == 1 and mylist[0] = key: result = Result(1,1,1,True)
+    if len(mylist) == 1 and mylist[0] == key: result = Result(1,1,1,True)
     elif len(mylist) == 1 and mylist[0] != key: result = Result(0,0,0,False)
         
     #actual recursive calls
