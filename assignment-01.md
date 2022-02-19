@@ -113,9 +113,13 @@ E.g., `longest_run([2,12,12,8,12,12,12,0,12,1], 12) == 3`
   - 3c. (7 pts) Next, implement a `longest_run_recursive`, a recursive, divide and conquer implementation. This is analogous to our implementation of `sum_list_recursive`. To do so, you will need to think about how to combine partial solutions from each recursive call. Make use of the provided class `Result`.   
 
   - 3d. (4 pts) What is the Work and Span of this sequential algorithm?  
-      The work of the recursive form of this algorithm is: W(n) = 2W(n/2) + k. We get 2 * W(n/2) because we split the list into 2 parts, so now each one takes only       1/2 of the work. So, we have W(n/2) work for each of 2 smaller lists and constant k represents merging the lists back together, beacuse it takes some additional work each time we combine. The merging work is constant because we do not use any for loops to combine the list back together and it will only happen the amount of times the function is called. 
+      The work of the recursive form of this algorithm is: W(n) = 2W(n/2) + k. We get 2 * W(n/2) because we split the list into 2 parts, so now each one 
+      takes only 1/2 of the work. So, we have W(n/2) work for each of 2 smaller lists and constant k represents merging the lists back together, 
+      beacuse it takes some additional work each time we combine. The merging work is constant because we do not use any for loops to combine the 
+      list back together and it will only happen the amount of times the function is called. 
       
-      The span is also: S(n) = 2W(n/2) + k because there is no parallelism involved and the computer must still do 1 task at a time. So the Span will be the same as the work for creating 2 smaller lists and merging them back together to find the longest streak.
+      The span is also: S(n) = 2W(n/2) + k because there is no parallelism involved and the computer must still do 1 task at a time. So the Span 
+      will be the same as the work for creating 2 smaller lists and merging them back together to find the longest streak.
 .  
 .  
 .  
@@ -130,9 +134,13 @@ E.g., `longest_run([2,12,12,8,12,12,12,0,12,1], 12) == 3`
 
 
   - 3e. (4 pts) Assume that we parallelize in a similar way we did with `sum_list_recursive`. That is, each recursive call spawns a new thread. What is the Work and Span of this algorithm?
-  The work required for this algorithm will not change with paralellism, because we still have the same amount of work to do, we can just do it in a shorter amount of time. So, work would be: W(n) = 2W(n/2) + k.
+  The work required for this algorithm will not change with paralellism, because we still have the same amount of work to do, we can just do it in a shorter 
+  amount of time. So, work would be: W(n) = 2W(n/2) + k.
   
-  We can reduce the span by the amount of tasks the computer is asked to do at once, in this case it would be to evaluate each of 2 smaller lists at once, so we can divide the span by the new amount of tasks it can do at once: 2, to get S(n) = S(n/2) + k, because we can now evaluate each list simultaneously. We could think about it like: now span is the time it takes the algorithm to analyze only 1 of the smaller lists, because it is analyzing them both at the same time.
+  We can reduce the span by the amount of tasks the computer is asked to do at once, in this case it would be to evaluate each of 2 smaller lists at once, 
+  so we can divide the span by the new amount of tasks it can do at once: 2, to get S(n) = S(n/2) + k, because we can now evaluate each list simultaneously. 
+  We could think about it like: now span is the time it takes the algorithm to analyze only 1 of the smaller lists, because it is analyzing them both at the 
+  same time.
 
 .  
 .  
